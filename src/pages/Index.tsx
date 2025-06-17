@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Users, Camera, Recycle, Heart, Leaf, Shield, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import Navbar from "@/components/navigation/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ReportWasteSection from "@/components/ReportWasteSection";
 import JoinWorkerSection from "@/components/JoinWorkerSection";
@@ -18,6 +19,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+      <Navbar />
       <HeroSection />
       <StatsSection />
       <HowItWorksSection />

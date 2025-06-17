@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Camera, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ImageUpload from "@/components/upload/ImageUpload";
 
 const ReportWasteSection = () => {
   const { toast } = useToast();
@@ -38,11 +39,8 @@ const ReportWasteSection = () => {
     });
   };
 
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFormData(prev => ({ ...prev, photo: file }));
-    }
+  const handleImageSelect = (file: File) => {
+    setFormData(prev => ({ ...prev, photo: file }));
   };
 
   return (
@@ -125,26 +123,10 @@ const ReportWasteSection = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="photo" className="text-sm font-semibold text-gray-700">
+                  <Label className="text-sm font-semibold text-gray-700">
                     Upload Photo *
                   </Label>
-                  <div className="border-2 border-dashed border-green-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
-                    <input
-                      type="file"
-                      id="photo"
-                      accept="image/*"
-                      onChange={handlePhotoUpload}
-                      className="hidden"
-                      required
-                    />
-                    <label htmlFor="photo" className="cursor-pointer">
-                      <Camera className="w-12 h-12 text-green-500 mx-auto mb-2" />
-                      <p className="text-sm text-gray-600">
-                        {formData.photo ? formData.photo.name : "Click to upload waste photo"}
-                      </p>
-                      <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 10MB</p>
-                    </label>
-                  </div>
+                  <ImageUpload onImageSelect={handleImageSelect} />
                 </div>
 
                 <div className="space-y-2">
